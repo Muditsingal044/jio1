@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Banking System</h1>
+            <nav>
+                <ul>
+                    <li><a href="#" id="home-link" class="active">Home</a></li>
+                    <li><a href="#" id="accounts-link">Accounts</a></li>
+                    <li><a href="#" id="transactions-link">Transactions</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Home Section -->
+            <section id="home-section" class="section active">
+                <h2>Welcome to Banking System</h2>
+                <p>Select an option below to manage your banking needs:</p>
+                <div class="dashboard">
+                    <div class="dashboard-item" id="view-accounts">
+                        <h3>View Accounts</h3>
+                        <p>List all existing accounts</p>
+                    </div>
+                    <div class="dashboard-item" id="open-account">
+                        <h3>Open Account</h3>
+                        <p>Create a new bank account</p>
+                    </div>
+                    <div class="dashboard-item" id="search-account">
+                        <h3>Search Account</h3>
+                        <p>Find account by account number</p>
+                    </div>
+                    <div class="dashboard-item" id="manage-account">
+                        <h3>Manage Account</h3>
+                        <p>Deposit, withdraw, or close account</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Accounts Section -->
+            <section id="accounts-section" class="section">
+                <h2>Accounts Management</h2>
+                
+                <!-- List Accounts Subsection -->
+                <div id="list-accounts-subsection" class="subsection active">
+                    <h3>List of Existing Accounts</h3>
+                    <table id="accounts-table">
+                        <thead>
+                            <tr>
+                                <th>Account Number</th>
+                                <th>Account Holder</th>
+                                <th>Account Type</th>
+                                <th>Balance</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="accounts-list">
+                            <!-- Account rows will be added here by JavaScript -->
+                        </tbody>
+                    </table>
+                    <div class="no-accounts-message" id="no-accounts-message">No accounts found. Create a new account to get started.</div>
+                </div>
+
+                <!-- Open Account Subsection -->
+                <div id="open-account-subsection" class="subsection">
+                    <h3>Open a New Account</h3>
+                    <form id="open-account-form">
+                        <div class="form-group">
+                            <label for="account-holder">Account Holder Name:</label>
+                            <input type="text" id="account-holder" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="account-type">Account Type:</label>
+                            <select id="account-type" required>
+                                <option value="">Select Account Type</option>
+                                <option value="Savings">Savings</option>
+                                <option value="Checking">Checking</option>
+                                <option value="Fixed Deposit">Fixed Deposit</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="initial-deposit">Initial Deposit Amount:</label>
+                            <input type="number" id="initial-deposit" min="0" step="0.01" required>
+                        </div>
+                        <button type="submit" class="btn">Create Account</button>
+                    </form>
+                </div>
+
+                <!-- Search Account Subsection -->
+                <div id="search-account-subsection" class="subsection">
+                    <h3>Search for an Account</h3>
+                    <div class="search-container">
+                        <input type="text" id="search-account-input" placeholder="Enter account number...">
+                        <button id="search-account-btn" class="btn">Search</button>
+                    </div>
+                    <div id="search-results">
+                        <!-- Search results will be displayed here -->
+                    </div>
+                </div>
+
+                <!-- Account Details Subsection -->
+                <div id="account-details-subsection" class="subsection">
+                    <h3>Account Details</h3>
+                    <div id="account-details">
+                        <!-- Account details will be displayed here -->
+                    </div>
+                    <div class="account-actions">
+                        <button id="deposit-btn" class="btn">Deposit</button>
+                        <button id="withdraw-btn" class="btn">Withdraw</button>
+                        <button id="view-transactions-btn" class="btn">View Transactions</button>
+                        <button id="close-account-btn" class="btn btn-danger">Close Account</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Transactions Section -->
+            <section id="transactions-section" class="section">
+                <h2>Transactions</h2>
+                
+                <!-- Deposit Subsection -->
+                <div id="deposit-subsection" class="subsection">
+                    <h3>Deposit Funds</h3>
+                    <form id="deposit-form">
+                        <div class="form-group">
+                            <label for="deposit-account">Account Number:</label>
+                            <input type="text" id="deposit-account" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="deposit-amount">Amount to Deposit:</label>
+                            <input type="number" id="deposit-amount" min="0.01" step="0.01" required>
+                        </div>
+                        <button type="submit" class="btn">Deposit</button>
+                    </form>
+                </div>
+
+                <!-- Withdraw Subsection -->
+                <div id="withdraw-subsection" class="subsection">
+                    <h3>Withdraw Funds</h3>
+                    <form id="withdraw-form">
+                        <div class="form-group">
+                            <label for="withdraw-account">Account Number:</label>
+                            <input type="text" id="withdraw-account" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="withdraw-amount">Amount to Withdraw:</label>
+                            <input type="number" id="withdraw-amount" min="0.01" step="0.01" required>
+                        </div>
+                        <button type="submit" class="btn">Withdraw</button>
+                    </form>
+                </div>
+
+                <!-- View Transactions Subsection -->
+                <div id="view-transactions-subsection" class="subsection">
+                    <h3>Transaction History</h3>
+                    <div class="account-info">
+                        <p>Account Number: <span id="transaction-account-number"></span></p>
+                        <p>Account Holder: <span id="transaction-account-holder"></span></p>
+                    </div>
+                    <table id="transactions-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Type</th>
+                                <th>Amount</th>
+                                <th>Balance After</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactions-list">
+                            <!-- Transaction rows will be added here by JavaScript -->
+                        </tbody>
+                    </table>
+                    <div class="no-transactions-message" id="no-transactions-message">No transactions found for this account.</div>
+                </div>
+
+                <!-- Close Account Subsection -->
+                <div id="close-account-subsection" class="subsection">
+                    <h3>Close Account</h3>
+                    <div class="warning-message">
+                        <p>Warning: You are about to close the following account:</p>
+                        <div class="account-info">
+                            <p>Account Number: <span id="close-account-number"></span></p>
+                            <p>Account Holder: <span id="close-account-holder"></span></p>
+                            <p>Current Balance: <span id="close-account-balance"></span></p>
+                        </div>
+                        <p>This action cannot be undone. Any remaining balance will be withdrawn.</p>
+                    </div>
+                    <div class="confirmation">
+                        <button id="confirm-close-btn" class="btn btn-danger">Confirm Close Account</button>
+                        <button id="cancel-close-btn" class="btn">Cancel</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2023 Banking System. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Modal for messages -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <p id="modal-message"></p>
+            <button id="modal-ok-btn" class="btn">OK</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
