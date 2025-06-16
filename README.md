@@ -1,4 +1,4 @@
-# Banking Website
+# Mudit Singal's Banking Website
 
 A simple banking website built with HTML, CSS, and JavaScript that implements the following use cases:
 
